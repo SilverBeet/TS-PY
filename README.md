@@ -1,5 +1,5 @@
 # TS-PY
-### Skole proskjet
+### Skole prosjekt
 
 #### Client setup
 ```
