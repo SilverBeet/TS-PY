@@ -1,43 +1,43 @@
 # TS-PY
 ### Skole proskjet
 
-## Client setup
+#### Client setup
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+##### Compiles and hot-reloads for development
 ```
 yarn run serve
 ```
 
-### Compiles and minifies for production
+##### Compiles and minifies for production
 ```
 yarn run build
 ```
 
-### Run your tests
+##### Run your tests
 ```
 yarn run test
 ```
 
-### Lints and fixes files
+##### Lints and fixes files
 ```
 yarn run lint
 ```
 
-## Server Setup
+#### Server Setup
 
 Requirements:
   Python3
   Pip3
   Sqlite
 
-### Dependencies
+##### Dependencies
 ```
 pip install flask flask_sqlalchemy
 ```
-### Run server
+##### Run server
 ```
 python api.py
 ```
