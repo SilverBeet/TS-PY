@@ -3,6 +3,7 @@
     <div class="tableWrapper">
       <div class="innerWrapper">
         <input type="button" value="Add" @click.prevent="showModal = true">
+        <input type="button" value="Update Table" @click.prevent="showAllPosts">
         <table>
           <thead>
             <tr>
@@ -23,7 +24,7 @@
         </table>
       </div>
     </div>
-    <formModal v-if="showModal" @close="showModal = false" />
+    <formModal  v-if="showModal" @close="showModal = false" />
   </div>
 </template>
 
@@ -31,7 +32,6 @@
 
 // Dependencies
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import Axios from 'axios';
 
 // Api Service
 import Persons from '../services/person.service';
@@ -48,11 +48,11 @@ interface IPerson {
 
 export default class Search extends Vue {
 
-  public person: IPerson[] = [];
+  private person: IPerson[] = [];
 
   private showModal = false;
 
-  public showAllPosts() {
+  private showAllPosts() {
     Persons.getAllPosts()
       .then((res) => this.person = res.data)
       .catch((err) => console.log(err));

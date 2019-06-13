@@ -8,7 +8,7 @@
             <form>
               <div class="inputWrapper">
                 <label for="firstName">First name</label>
-                <input id="firstName"  v-model="form.first_name" name="first_name" type="text">
+                <input id="firstName" v-model="form.first_name" name="first_name" type="text">
               </div>
               <div class="inputWrapper">
                 <label for="lastName">Last name</label>
@@ -31,7 +31,7 @@
 
 <script lang="ts">
 
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue} from 'vue-property-decorator';
 
 import Persons from '../../services/person.service';
 
@@ -41,9 +41,10 @@ interface IForm {
   hoursWorked: number | undefined;
 }
 
+@Component
 export default class Form extends Vue {
 
-  public form: IForm = {
+  private form: IForm = {
     first_name: '',
     last_name: '',
     hoursWorked: undefined,
@@ -55,6 +56,7 @@ export default class Form extends Vue {
   }
 
   private cleanForm() {
+    console.log('hell0o');
     this.form = {
       first_name: '',
       last_name: '',
