@@ -1,11 +1,11 @@
-#### Server Setup
+### Server Setup
 
 Requirements:
   Python3,
   Pip3,
   Sqlite
 
-#### Dependencies
+### Dependencies
 ```
 pip install flask flask_sqlalchemy
 ```
