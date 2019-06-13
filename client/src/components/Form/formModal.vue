@@ -19,7 +19,7 @@
                 <input id="hoursWorked"  v-model="form.hoursWorked" name="hoursWorked" type="number">
               </div>
               <div class="submitWrapper">
-                <input type="submit" @click.prevent="submit" value="Send">
+                <input type="submit" @click.prevent="createNew" value="Send">
               </div>
             </form>
           </div>
@@ -41,7 +41,6 @@ interface IForm {
   hoursWorked: number | undefined;
 }
 
-@Component
 export default class Form extends Vue {
 
   public form: IForm = {
@@ -50,10 +49,8 @@ export default class Form extends Vue {
     hoursWorked: undefined,
   };
 
-
-  private submit() {
+  private createNew() {
     Persons.submitPerson(this.form);
-    console.log('Data submitted');
     this.cleanForm();
   }
 

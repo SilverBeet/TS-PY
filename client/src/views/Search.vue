@@ -13,11 +13,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr :id="item.id" v-for="(item, index) in person" :key="index">
-              <td>{{ item.first_name }}</td>
-              <td>{{ item.last_name }}</td>
-              <td class="numberTd">{{ item.hoursWorked }}</td>
-              <td><input class="deleteButton" type="submit" @click.prevent="delPerson(item.id, index)" value="Delete"></td>
+            <tr :id="per.id" v-for="(per, index) in person" :key="index">
+              <td>{{ per.first_name }}</td>
+              <td>{{ per.last_name }}</td>
+              <td class="numberTd">{{ per.hoursWorked }}</td>
+              <td><input class="deleteButton" type="submit" @click.prevent="delPerson(per.id, index)" value="Delete"></td>
             </tr>
           </tbody>
         </table>
@@ -52,7 +52,7 @@ export default class Search extends Vue {
 
   private showModal = false;
 
-  private showAllPosts() {
+  public showAllPosts() {
     Persons.getAllPosts()
       .then((res) => this.person = res.data)
       .catch((err) => console.log(err));
