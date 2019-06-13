@@ -7,7 +7,7 @@ Requirements:
 
 ### Dependencies
 ```
-pip install flask flask_sqlalchemy
+pip install flask flask_sqlalchemy flask_cors
 ```
 
 ### Create db
