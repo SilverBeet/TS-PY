@@ -26,21 +26,6 @@ yarn run test
 yarn run lint
 ```
 
-#### Server Setup
-
-Requirements:
-  Python3
-  Pip3
-  Sqlite
-
-##### Dependencies
-```
-pip install flask flask_sqlalchemy
-```
-##### Run server
-```
-python api.py
-```
 
 
 
