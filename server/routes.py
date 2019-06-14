@@ -9,7 +9,7 @@ routes_blueprint = Blueprint("routes", __name__)
 
 @routes_blueprint.route("/person", methods=["GET"])
 def show():
-    return jsonify(get_all_users())
+    return get_all_users()
 
 @routes_blueprint.route('/person/<id>', methods=['GET'])
 def getOnePerson(id):
@@ -18,7 +18,6 @@ def getOnePerson(id):
 @routes_blueprint.route('/person', methods=['POST'])
 def createAPerson():
     return create_user()
-
 
 @routes_blueprint.route('/person/<id>', methods=['DELETE'])
 def deleteAPerson(id):

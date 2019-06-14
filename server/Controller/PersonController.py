@@ -1,24 +1,8 @@
 import sys
 sys.path.append("..")
 
-from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, jsonify, request
-
-app = Flask(__name__)
-
-app.config['SECRET_KEY'] = 'thisissecret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/Phil Ka/Desktop/Coding/stack/TS-PY/server/database/Person.db'
-
-db = SQLAlchemy(app)
-
-# from Model.Person import Person, db
-
-
-class Person(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50))
-    last_name = db.Column(db.String(50))
-    hoursWorked = db.Column(db.String(50))
+from Model.Person import Person, db
 
 # GET ALL PERSONS
 def get_all_users():
@@ -31,7 +15,7 @@ def get_all_users():
         person_data['last_name'] = person.last_name
         person_data['hoursWorked'] = person.hoursWorked
         output.append(person_data)
-    return output
+    return jsonify(output)
 
 # GET ONE PERSONS
 def get_one_user(id):
@@ -62,4 +46,4 @@ def create_user():
 def delete_person(id):
     Person.query.filter_by(id=id).delete()
     db.session.commit()
-    return jsonify({'Message':'Person with id:%s deleted' % id})
+    return jsonify({'Message':'Person with id: %s deleted' % id})
