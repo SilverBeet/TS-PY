@@ -1,24 +1,33 @@
-#### Client setup
-```
+# Client
+
+## setup
+
+### Vue TS
+
+``` text
 yarn install
 ```
 
-##### Compiles and hot-reloads for development
-```
+#### Compiles and hot-reloads for development
+
+``` text
 yarn run serve
 ```
 
-##### Compiles and minifies for production
-```
+#### Compiles and minifies for production
+
+``` text
 yarn run build
 ```
 
-##### Run your tests
-```
+#### Run your tests
+
+``` text
 yarn run test
 ```
 
-##### Lints and fixes files
-```
+#### Lints and fixes files
+
+``` text
 yarn run lint
 ```
