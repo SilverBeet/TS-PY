@@ -44,7 +44,7 @@ interface IPerson {
   hoursWorked: number;
 }
 
-@Component({components: { formModal } })
+@Component({ components: { formModal } })
 
 export default class Search extends Vue {
 
