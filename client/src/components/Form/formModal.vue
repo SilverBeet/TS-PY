@@ -7,16 +7,16 @@
             <div id="inputform">
             <form>
               <div class="inputWrapper">
-                <label for="firstName">First name</label>
-                <input id="firstName" v-model="form.first_name" name="first_name" type="text">
+                <label for="firstName">Firstname</label>
+                <input id="firstName" v-model="form.first_name" name="first_name" required type="text">
               </div>
               <div class="inputWrapper">
-                <label for="lastName">Last name</label>
-                <input id="lastName"  v-model="form.last_name" name="last_name" type="text">
+                <label for="lastName">Lastname</label>
+                <input id="lastName"  v-model="form.last_name" name="last_name" required type="text">
               </div>
               <div class="inputWrapper">
                 <label for="hoursWorked">Hours worked</label>
-                <input id="hoursWorked"  v-model="form.hoursWorked" name="hoursWorked" type="number">
+                <input id="hoursWorked"  v-model="form.hoursWorked" name="hoursWorked" required type="number">
               </div>
               <div class="submitWrapper">
                 <input type="submit" @click.prevent="createNew" value="Send">
@@ -30,46 +30,38 @@
 </template>
 
 <script lang="ts">
-
-import { Component, Vue} from 'vue-property-decorator';
-
+import { Component, Vue } from 'vue-property-decorator';
 import Persons from '../../services/person.service';
 
 interface IForm {
   first_name: string;
   last_name: string;
-  hoursWorked: number | undefined;
+  hoursWorked: number | '';
 }
 
 @Component
 export default class Form extends Vue {
-
   private form: IForm = {
     first_name: '',
     last_name: '',
-    hoursWorked: undefined,
+    hoursWorked: '',
   };
-
-  private createNew() {
-    Persons.submitPerson(this.form);
+  private async createNew() {
+    if (this.form.first_name === '' || this.form.last_name === '' || this.form.hoursWorked === '') { return; }
+    await this.$store.dispatch('CREATE_PERSON', this.form);
     this.cleanForm();
   }
-
   private cleanForm() {
-    console.log('hell0o');
     this.form = {
       first_name: '',
       last_name: '',
-      hoursWorked: undefined,
+      hoursWorked: '',
     };
   }
-
 }
 </script>
 
-
 <style>
-
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -77,8 +69,8 @@ export default class Form extends Vue {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .5);
   display: table;
+  background-color: rgba(0, 0, 0, .5);
   transition: opacity .3s ease;
 }
 
@@ -190,7 +182,7 @@ export default class Form extends Vue {
   font-size: 15px;
   width: 50%;  
   border: 1px solid #2c3e50;
-  transition: ease-in-out .2s;
+  transition: ease-in-out .04s;
 }
 
 .submitWrapper input[type="submit"]:hover {
@@ -204,7 +196,4 @@ export default class Form extends Vue {
   color: #b4c2ce;
   background: #2c3e50;
 }
-
-
-
 </style>

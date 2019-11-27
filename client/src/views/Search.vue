@@ -2,19 +2,21 @@
   <div id="search">
     <div class="tableWrapper">
       <div class="innerWrapper">
-        <input type="button" value="Add" @click.prevent="showModal = true">
-        <input type="button" value="Update Table" @click.prevent="showAllPosts">
+        <div class="table-actions">
+          <input type="search" v-model="search" placeholder="Filter... " class="searchField">
+          <input type="button" value="+" @click.prevent="showModal = true">
+        </div>
         <table>
           <thead>
             <tr>
-              <th>First name</th>
-              <th>Last name</th>
+              <th>Firstname</th>
+              <th>Lastname</th>
               <th>Hours worked</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr :id="per.id" v-for="(per, index) in person" :key="index">
+            <tr :id="per.id" v-for="(per, index) in filterSearch" :key="index">
               <td>{{ per.first_name }}</td>
               <td>{{ per.last_name }}</td>
               <td class="numberTd">{{ per.hoursWorked }}</td>
@@ -33,45 +35,53 @@
 // Dependencies
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
-// Api Service
-import Persons from '../services/person.service';
-
 // Components
 import formModal from '../components/Form/formModal.vue';
-interface IPerson {
-  first_name: string;
-  last_name: string;
-  hoursWorked: number;
-}
 
 @Component({components: { formModal } })
-
 export default class Search extends Vue {
-
-  private person: IPerson[] = [];
-
   private showModal = false;
-
-  private showAllPosts() {
-    Persons.getAllPosts()
-      .then((res) => this.person = res.data)
-      .catch((err) => console.log(err));
+  private search = '';
+  get filterSearch() {
+    return this.$store.getters.getPersons
+      .filter((data: any) => {
+          return `${data.first_name.toLowerCase()} ${data.last_name.toLowerCase()}`
+            .includes(this.search.toLowerCase()) ||
+          data.hoursWorked.includes(this.search);
+      });
   }
-
-  private created() {
-    this.showAllPosts();
+  private async created() {
+    await this.$store.dispatch('LOAD_PERSONS');
   }
-
-  private delPerson(id: string, index: number) {
-    Persons.deletePerson(id);
-    this.person.splice(index, 1);
-
+  private async delPerson(id: number, index: number) {
+    await this.$store.dispatch('DELETE_PERSON', { id, index });
   }
-
 }
 </script>
-
 <style scoped>
+.table-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+} 
+
+.searchField {
+  background: transparent;
+  max-width: 170px;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  color: #2c3e50;
+  height: 20px;
+  border-bottom: 1px solid #2c3e50;
+}
+
+.searchField::placeholder {
+  opacity: 0.5;
+  color: #2c3e50;
+}
 
 table {
   border-collapse: collapse;
@@ -89,10 +99,10 @@ table {
   outline: none;
   font-weight: bold;
   font-size: 15px;
+  margin-right: 10px;
   width: auto;  
   border: 1px solid #2c3e50;
   transition: ease-in-out .1s;
-  margin-bottom: 20px;
 }
 
 .tableWrapper input[type="button"]:hover {

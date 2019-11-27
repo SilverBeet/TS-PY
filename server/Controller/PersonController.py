@@ -32,12 +32,14 @@ def get_one_user(id):
 # CREATE ONE PERSONS
 def create_user():
     data = request.get_json()
-    newPerson = Person(first_name=data['first_name'], last_name=data['last_name'], hoursWorked=data['hoursWorked'])
-    db.session.add(newPerson)
+    if '' in dict(data).values():
+        return jsonify({'message' : 'Please fill out all fields!'})
+    person = Person(first_name=data['first_name'], last_name=data['last_name'], hoursWorked=data['hoursWorked'])
+    db.session.add(person)
     db.session.commit()
     return jsonify({'message' : 'New user created!'})
 
-# UPDATE ONE PERSON
+# UPDATE ONE PERSON         
 # @app.route('/person/<id>', methods=['PUT'])
 # def update_person(id):
 #     return ''

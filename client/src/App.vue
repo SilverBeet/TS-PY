@@ -9,6 +9,10 @@
 
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: #cdd0d3;
   margin: 0;
