@@ -38,7 +38,12 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 // Components
 import formModal from '../components/Form/formModal.vue';
 
+<<<<<<< HEAD
 @Component({components: { formModal } })
+=======
+@Component({ components: { formModal } })
+
+>>>>>>> 69042706211c71e3f52b5692bba5932731e81b0d
 export default class Search extends Vue {
   private showModal = false;
   private search = '';
