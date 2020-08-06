@@ -4,11 +4,11 @@ const url = 'http://127.0.0.1:5000/person';
 
 export default {
   async getAll() {
-    return await Axios.get(`${url}`);
+    return await Axios.get(url);
   },
 
   async create(data: object) {
-    await Axios.post(`${url}`, data);
+    await Axios.post(url, data);
   },
 
   async deletePerson(id: string) {
