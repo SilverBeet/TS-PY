@@ -8,17 +8,17 @@ routes_blueprint = Blueprint("routes", __name__)
 
 
 @routes_blueprint.route("/person", methods=["GET"])
-def show():
+def index():
     return get_all_users()
 
 @routes_blueprint.route('/person/<id>', methods=['GET'])
-def getOnePerson(id):
+def show(id):
     return get_one_user(id)
 
 @routes_blueprint.route('/person', methods=['POST'])
-def createAPerson():
+def create():
     return create_user()
 
 @routes_blueprint.route('/person/<id>', methods=['DELETE'])
-def deleteAPerson(id):
+def destroy(id):
     return delete_person(id)

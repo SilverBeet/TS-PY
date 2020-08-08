@@ -7,11 +7,11 @@
             <div id="inputform">
             <form>
               <div class="inputWrapper">
-                <label for="firstName">Firstname</label>
+                <label for="firstName">First Name</label>
                 <input id="firstName" v-model="form.first_name" name="first_name" required type="text">
               </div>
               <div class="inputWrapper">
-                <label for="lastName">Lastname</label>
+                <label for="lastName">Last Name</label>
                 <input id="lastName"  v-model="form.last_name" name="last_name" required type="text">
               </div>
               <div class="inputWrapper">
@@ -120,7 +120,6 @@ export default class Form extends Vue {
   font-size: 20px;
   cursor: pointer;
 }
-
 
 #inputform  {
   display: grid;

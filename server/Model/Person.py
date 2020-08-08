@@ -5,11 +5,10 @@ from flask import Flask
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'thisissecret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///<PathToDB>'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/Phil Ka/Desktop/Coding/stack/TS-PY/server/Database/Person.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
