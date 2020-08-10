@@ -14,7 +14,7 @@ pip install flask flask_sqlalchemy flask_cors
 
 Python in cmd
 ```
->>> from api import db
+>>> from Model.Person import db
 >>> db.create_all()
 ```
 
