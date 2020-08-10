@@ -19,7 +19,7 @@
             <tr :id="per.id" v-for="(per, index) in filterSearch" :key="index">
               <td>{{ per.first_name }}</td>
               <td>{{ per.last_name }}</td>
-              <td class="numberTd">{{ per.hoursWorked }}</td>
+              <td class="numberTd">{{ per.hours_worked }}</td>
               <td>
                 <input
                   class="deleteButton"
@@ -52,7 +52,7 @@ export default class Search extends Vue {
       return (
         `${data.first_name.toLowerCase()} ${data.last_name.toLowerCase()}`.includes(
           this.search.toLowerCase(),
-        ) || data.hoursWorked.includes(this.search)
+        ) || data.hours_worked.includes(this.search)
       );
     });
   }

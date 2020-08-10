@@ -15,8 +15,8 @@
                 <input id="lastName"  v-model="form.last_name" name="last_name" required type="text">
               </div>
               <div class="inputWrapper">
-                <label for="hoursWorked">Hours worked</label>
-                <input id="hoursWorked"  v-model="form.hoursWorked" name="hoursWorked" required type="number">
+                <label for="hours_worked">Hours worked</label>
+                <input id="hours_worked"  v-model="form.hours_worked" name="hours_worked" required type="number">
               </div>
               <div class="submitWrapper">
                 <input type="submit" @click.prevent="createNew" value="Send">
@@ -36,7 +36,7 @@ import Persons from '../../services/person.service';
 interface IForm {
   first_name: string;
   last_name: string;
-  hoursWorked: number | '';
+  hours_worked: number | '';
 }
 
 @Component
@@ -44,10 +44,10 @@ export default class Form extends Vue {
   private form: IForm = {
     first_name: '',
     last_name: '',
-    hoursWorked: '',
+    hours_worked: '',
   };
   private async createNew() {
-    if (this.form.first_name === '' || this.form.last_name === '' || this.form.hoursWorked === '') { return; }
+    if (this.form.first_name === '' || this.form.last_name === '' || this.form.hours_worked === '') { return; }
     await this.$store.dispatch('CREATE_PERSON', this.form);
     this.cleanForm();
   }
@@ -55,7 +55,7 @@ export default class Form extends Vue {
     this.form = {
       first_name: '',
       last_name: '',
-      hoursWorked: '',
+      hours_worked: '',
     };
   }
 }
@@ -143,7 +143,7 @@ export default class Form extends Vue {
   border-bottom: 1px solid #2c3e50;
 }
 
-#hoursWorked {
+#hours_worked {
   outline: none;
   max-width: 170px;
   font-weight: bold;
@@ -154,8 +154,8 @@ export default class Form extends Vue {
   background: #fff;
 }
 
-#hoursWorked::-webkit-outer-spin-button,
-#hoursWorked::-webkit-inner-spin-button {
+#hours_worked::-webkit-outer-spin-button,
+#hours_worked::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 

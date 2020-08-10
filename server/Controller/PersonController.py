@@ -13,7 +13,7 @@ def get_all_users():
         person_data['id'] = person.id
         person_data['first_name'] = person.first_name
         person_data['last_name'] = person.last_name
-        person_data['hoursWorked'] = person.hoursWorked
+        person_data['hours_worked'] = person.hours_worked
         output.append(person_data)
     return jsonify(output)
 
@@ -26,7 +26,7 @@ def get_one_user(id):
     person_data['id'] = person.id
     person_data['first_name'] = person.first_name
     person_data['last_name'] = person.last_name
-    person_data['hoursWorked'] = person.hoursWorked
+    person_data['hours_worked'] = person.hours_worked
     return jsonify(person_data)
 
 # CREATE ONE PERSONS
@@ -34,7 +34,7 @@ def create_user():
     data = request.get_json()
     if '' in dict(data).values():
         return jsonify({'message' : 'Please fill out all fields!'})
-    person = Person(first_name=data['first_name'], last_name=data['last_name'], hoursWorked=data['hoursWorked'])
+    person = Person(first_name=data['first_name'], last_name=data['last_name'], hours_worked=data['hours_worked'])
     db.session.add(person)
     db.session.commit()
     return jsonify({'message' : 'New user created!'})
